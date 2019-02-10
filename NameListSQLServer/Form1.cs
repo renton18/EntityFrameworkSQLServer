@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NameListSQLServer.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,14 @@ namespace NameListSQLServer
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            using (NameListDbContext db = new NameListDbContext() )
+            {
+                personBindingSource.DataSource = db.persons.ToList();
+            }
         }
     }
 }
